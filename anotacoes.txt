@@ -1,0 +1,72 @@
+O que são containers?
+É um pacote de codigo que pode rodar uma açao, assim como nos temos os venvs do python, e ainda sendo possível rodar varios containers
+em paralelo.
+
+Containers utilizam imagens para ser executado, que nada mais é que o contexto que sera executado pelo container, e todas as instruções estarão rodando
+nela.
+
+para exibir um container, basta que utilizemos o comando ps ou docker container ls, para executar um container, precisamos dar o comando docker run <nome da imagem>
+Para executar um container com o terminal, basta rodar o container com a flag -it, da seguinte forma: docker run -it <nm da img>
+
+para rodar um container em background, nos vamos utilizar a flag -d, da segunte forma: docker run -d <imagem>
+
+como o docker isola recursos, uma das coisas que ele isola é exatamente o acesso a internet, ou qualquer coisa do "mundo externo", contudo, nos podemos passar uma porta para o nosso querido, a partir da flag -p, da mesma forma que nos iniciamos uma imagem
+
+docker run -p (porta) <imagem>
+
+para iniciar um container, nos utilizamos o docker start <nome do container>, para parar basta utilizar o comando stop
+
+para definir um nome para um container, no momento da criaçao, devemos colocar a flag --name e em seguida o nome da querida
+
+-------------------
+
+Para criar uma imagem, nos precisamos usar uma Dockerfile, que vai ter as instruções para criar esta imagem, e dentro desta dockerfile, nos temos algumas instruçoes
+
+- from = é a imagem base que queremos utilizar, seja de um os ou de uma linguagem de programação
+- workdir = é o diretorio que a nossa aplicação ira ser instalada na imagem
+- copy = é nos copiarmos algo que está dentro da nossa pasta local para o diretorio do container
+- run = é um comando para que o container rode algo, como uma instalação de um pacote
+- expose = é a porta que nos vamos expor o container para interação
+- cmd = roda a aplicação
+
+----------------------------------
+
+para remover uma imagem do docker, basta que nas nomeemos com o comando rmi (remove image) e o nome da imagem, da seguinte maneira: docker rmi node
+
+Para nos removermos os containers não utilizados, nos vamos rodar o comando docker system prune.
+e utilziando o comando docker run --rm <container>, nos vamos deletar os containers assim que encerrar o uso
+
+Para copiar arquivos entre containers, ou de um container para um diretório local, nos utilizamos o comando cp
+
+o comando top vai mostrar algumas informações sobre o container que nos queremos saber sobre
+
+O docker inspect vai fazer com que a gente verifique informaçoes mais profundas do container
+
+o docker stats mostra os processos do container, assim como temos no gerenciador de tarefas
+
+nos podemos logar no docker a partir do terminal com o comando docker login
+e para encerrar a conexao, usamos o docker logout
+
+e assim como temos no git, nos podemos enviar imagens para o docker hub, com o comando push, (aka comando inverso de puxar uma imagem do docker)
+
+
+-------------------------------------------------------
+
+Trabalhando com volumes no docker
+
+Os volumes anonimos são volumes nao nomeados que nso retornaremos um nome, e caso o container seja eliminado, todos os dados são eliminados juntos
+
+no caso do volume nomeado, é possivel acessar os dados gerados
+
+e para conseguirmos atualizar os arquivos que estamos programando nos passamos no volume o caminho relativo:caminho da pasta no container
+
+exemplo:
+ docker run -d --name app_python -v /home/thiagomares/'Área de Trabalho'/Docker_python/:/app/ app_python
+ 
+ Para criar um volume, basta que nos usemos o comando volume create
+ 
+ para listar os volumes, nos usamos o docker volume ls, enquanto para inspecionar o mesmo volume, nos podemos utilizar o comando docker volume inspect <nome do volume>
+ 
+ assim como nos temos os comandos para remover um container, nos temos o comando para remover um volume (mas sempre lembrar de fazer um backup dessa bomba)
+ 
+ 
