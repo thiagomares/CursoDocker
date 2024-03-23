@@ -1,0 +1,2 @@
+networks são redes, para gerenciar conexões no docker, entre outras plataformas e entre containers
+as redes são criadas separadas do containers, como os volumes
